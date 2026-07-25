@@ -1,12 +1,22 @@
-function TodoItem({ todo, deleteTodo, toggleTodo }) {
-  return (
-    <div className={`todo ${todo.completed ? "completed" : ""}`}>
-      <span onClick={() => toggleTodo(todo.id)}>
-        {todo.text}
-      </span>
+import React from 'react';
 
-      <button onClick={() => deleteTodo(todo.id)}>
-        ❌
+function TodoItem({ todo, toggleTodo, deleteTodo }) {
+  return (
+    <div className={`todo-item ${todo.done ? 'done' : ''}`}>
+      <button
+        className={`checkbox ${todo.done ? 'checked' : ''}`}
+        onClick={() => toggleTodo(todo.id)}
+      >
+        {todo.done && '✓'}
+      </button>
+
+      <div className="todo-content">
+        <div className="todo-text">{todo.text}</div>
+        <div className="todo-date">{todo.createdAt}</div>
+      </div>
+
+      <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
+        Удалить
       </button>
     </div>
   );
